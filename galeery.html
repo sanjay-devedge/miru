@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gallery-img {
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+        .gallery-img:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-5xl mx-auto text-center">
+        <h1 class="text-4xl font-bold text-gray-800 mb-8">2 idiots</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <img src="/src/assest/img1.jpg" alt="Memory 1" class="gallery-img w-full rounded-lg shadow-lg fade-in">
+            <img src="./assest/img2.jpg" alt="Memory 2" class="gallery-img w-full rounded-lg shadow-lg fade-in">
+            <img src="./assest/img3.jpg" alt="Memory 3" class="gallery-img w-full rounded-lg shadow-lg fade-in">
+            <img src="./assest/img4.jpg" alt="Memory 4" class="gallery-img w-full rounded-lg shadow-lg fade-in">
+            <img src="./assest/img5.jpg" alt="Memory 5" class="gallery-img w-full rounded-lg shadow-lg fade-in">
+            <img src="./assest/img6.jpg" alt="Memory 6" class="gallery-img w-full rounded-lg shadow-lg fade-in">
+        </div>
+        <a href="page2.html" class="mt-8 inline-block bg-blue-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-600 transition">Back to Memories</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const fadeInElements = document.querySelectorAll(".fade-in");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            fadeInElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
